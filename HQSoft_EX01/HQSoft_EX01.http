@@ -1,0 +1,6 @@
+@HQSoft_EX01_HostAddress = http://localhost:5203
+
+GET {{HQSoft_EX01_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

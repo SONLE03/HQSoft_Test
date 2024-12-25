@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  hqsoft_ex01:
+    image: ${DOCKER_REGISTRY-}hqsoftex01
+    build:
+      context: .
+      dockerfile: HQSoft_EX01/Dockerfile
+    environment:
+      server: "ms-sql-server"  
+      port: "1433"            
+      database: "BookStoreDataBase"
+      dbuser: "SA"           
+      password: "Lhs00000"  
+    ports:
+      - "8090:8080"          
+    depends_on:
+      - ms-sql-server     
+    networks:
+      - hqsoft_network        
+
+  ms-sql-server:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    environment:
+      ACCEPT_EULA: "Y"       
+      SA_PASSWORD: "Lhs00000" 
+      MSSQL_PID: Express    
+    ports:
+      - "1433:1433"         
+    networks:
+      - hqsoft_network       
+
+networks:
+  hqsoft_network:
+    driver: bridge
