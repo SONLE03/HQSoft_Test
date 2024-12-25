@@ -8,6 +8,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Data;
+using HQSoft_EX01.Exceptions;
 
 namespace HQSoft_EX01.Services.ReportService
 {
@@ -23,10 +24,15 @@ namespace HQSoft_EX01.Services.ReportService
 
         public async Task<PaginatedList<BookResponse>> GetReportsBook(SearchBookRequest searchBookRequest)
         {
-            var searchKey = searchBookRequest.SearchKey;
-            var authorId = searchBookRequest.AuthorId;
             var fromPublishedDate = searchBookRequest.FromPublishedDate;
             var toPublishedDate = searchBookRequest.ToPublishedDate;
+            if (fromPublishedDate != null && toPublishedDate != null && fromPublishedDate > toPublishedDate)
+            {
+                throw new BusinessException("fromPublishedDate cannot be greater than the toPublishedDate.");
+            }
+            var searchKey = searchBookRequest.SearchKey;
+            var authorId = searchBookRequest.AuthorId;
+
             var pageSize = searchBookRequest.PageSize;
             var pageIndex = searchBookRequest.PageIndex;
 
