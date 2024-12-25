@@ -19,21 +19,21 @@
 ##### 3.3.3 Filter
 ![image](https://github.com/user-attachments/assets/7c28bdec-5119-40b9-ba93-cff9e29ca154)
 
-
-
-
-
-
-  ## Installation
-  
+## Installation
+### Docker
   To set up the project on Docker, follow these steps: Make sure Docker is installed and running properly on your computer
-
 1. **Clone the repository**:
-   
      git clone https://github.com/SONLE03/HQSoft_Test
-     
      cd HQSoft_Test
-
 2. **Start the server:**
-   
    docker-compose up -d
+### Local
+1. **Clone the repository**:
+     git clone https://github.com/SONLE03/HQSoft_Test
+2. **Create database**: Open the MSSQL application and create a database to store records
+3. **Modify the URL connection string**
+   - Open the project with visualcode
+   - Edit file application.json with template:  "DefaultConnection": "Server=(local);Database={DatabaseName};Integrated Security=True;Encrypt=True;TrustServerCertificate=True;"
+   - Add database schema to mssql (Migration)
+   - Run project.
+   
