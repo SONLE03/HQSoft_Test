@@ -27,6 +27,8 @@
      cd HQSoft_Test
 2. **Start the server:**
    docker-compose up -d
+3. **Access Swagger** using the URL: http://localhost:8090/swagger/index.html
+
 ### Local
 1. **Clone the repository**:
      git clone https://github.com/SONLE03/HQSoft_Test
